@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    Event.create(event_parameterer)
+    Event.create(event_parameter)
     redirect_to events_path
   end
 
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   private
 
   def event_parameter
-    params.require(:blog).permit(:title, :content, :start_time)
+    params.require(:event).permit(:title, :content, :start_time, :image)
   end
 
 

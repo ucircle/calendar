@@ -20,11 +20,13 @@
       <tr>
         <td><%= link_to event.title , event %></td>
         <td><%= event.start_time.strftime("%m-%d") %></td>
+        <td>
+          <%= image_tag @event.image if @event.image.attached? %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 
 
 <%= form_with(model: @event, local: true) do |form| %>
@@ -40,10 +42,12 @@
     <%= form.text_field :content %>
   </div>
 
-    <div class="time">
-    <div class="form-tag">時間</div>
-    <%= form.datetime_select :start_time %>
+  <div class="time">
+  <div class="form-tag">時間</div>
+   <%= form.datetime_select :start_time %>
   </div>
+
+  <div><%= form.file_field :image %></div>
 
  <div class="submit">
     <%= form.submit %>
