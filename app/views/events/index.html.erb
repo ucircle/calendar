@@ -23,52 +23,105 @@
         <td>
           <%= image_tag @event.image if @event.image.attached? %>
         </td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
-
 <%= form_with(model: @event, local: true) do |form| %>
-
   <div class="title">
     <div class="form-tag">タイトル</div>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, id: 'event-title' %>
   </div>
-
 
   <div class="content">
     <div class="form-tag">内容</div>
     <%= form.text_field :content %>
   </div>
 
+
+  <div>
+  <select id="color-selector">
+  <option value="red" class="red-bg">赤</option>
+  <option value="blue" class="blue-bg">青</option>
+  <option value="green" class="green-bg">緑</option>
+  <option value="yellow" class="yellow-bg">黄</option>
+</select>
+
+ </div>
+
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const colorSelector = document.getElementById('color-selector');
+
+  colorSelector.addEventListener('change', function() {
+    const selectedOption = colorSelector.options[colorSelector.selectedIndex];
+    const selectedColor = selectedOption.value;
+
+    // 選択された項目の背景色を設定
+    colorSelector.style.backgroundColor = selectedColor;
+  });
+
+  // 初期の背景色を設定
+  const initialOption = colorSelector.options[colorSelector.selectedIndex];
+  const initialColor = initialOption.value;
+  colorSelector.style.backgroundColor = initialColor;
+
+  // 各選択肢の背景色を設定
+  const options = colorSelector.querySelectorAll('option');
+  options.forEach(function(option) {
+    const optionColor = option.value;
+    option.style.backgroundColor = optionColor;
+  });
+});
+
+
+ </script>
+
+
+
   <div class="time">
-  <div class="form-tag">時間</div>
-   <%= form.datetime_select :start_time %>
+    <div class="form-tag">時間</div>
+    <%= form.datetime_select :start_time %>
   </div>
 
   <div><%= form.file_field :image %></div>
 
- <div class="submit">
+  <div class="submit">
     <%= form.submit %>
- </div>
+  </div>
 <% end %>
-</div>
 
-<br>
+<%#<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const colorPicker = document.getElementById('color-picker');
+    const eventTitles = document.querySelectorAll('.event-title');
 
+    colorPicker.addEventListener('input', function() {
+      const selectedColor = colorPicker.value;
 
-<br>
+      // イベント名の文字色を変更
+      eventTitles.forEach(function(eventTitle) {
+        eventTitle.style.color = selectedColor;
+      });
+    });
+  });
+</script>
+%>
+
 <div class="col-md-8">
-<%= month_calendar events: @events do |date, events| %>
-  <%= date.day %>
+  <%= month_calendar events: @events do |date, events| %>
+    <%= date.day %>
 
-  <% events.each do |event| %>
+    <% events.each do |event| %>
     <div>
-      <%= link_to event.title, event %>
+<span class="event-title" style="color: <%= event.color %>;"><%= link_to event.title, event %></span>
     </div>
+    <% end %>
   <% end %>
-<% end %>
 </div>
+
+
 </div>
 </div>

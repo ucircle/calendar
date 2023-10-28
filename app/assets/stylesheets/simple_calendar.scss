@@ -57,21 +57,25 @@
     height: 80px;
   }
 
-  .wday-0 {}
+  .wday-0 {
+    background: #ffeaea;
+    color: #ff505c;
+  }
   .wday-1 {}
   .wday-2 {}
   .wday-3 {}
   .wday-4 {}
   .wday-5 {}
-  .wday-6 {}
+  .wday-6 {
+    background: #d4ebff;
+    color: #5984dc;
+  }
 
   .today {
     background: #FFFFC0
   }
 
   .past {
-    background-color: lightgray;
-    color: gray;
   }
   .future {}
 
@@ -85,5 +89,32 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+  }
+
+  .calendar-table tr td:hover {
+  background-color: #FFFF8c;
+  }
+
+.color-selector {
+  background-color: #fff;
+}
+
+.red-class {
+  color: #ff0000;
+}
+
+.blue-class {
+  color: #66ccff;
+}
+
+.green-class {
+  color: #009999;
+}
+
+.yellow-class {
+  color: #ff9900;
+}
+
+
 }
