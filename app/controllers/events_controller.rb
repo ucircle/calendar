@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to events_path, notice: "イベントを作成しました"
     else
-      flash.now[:alert] = "イベント名を入力してください"
+      flash.now[:notice] = "イベント名を入力してください"
       render 'events/index'
     end
   end
