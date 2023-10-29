@@ -15,3 +15,33 @@
  */
 
 
+:root {
+  --red-bg: red;
+  --blue-bg: blue;
+  --green-bg: green;
+  --yellow-bg: yellow;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.event-badge {
+  padding: 4px;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 12px;
+}
+

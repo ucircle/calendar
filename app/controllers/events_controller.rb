@@ -13,8 +13,14 @@ class EventsController < ApplicationController
   end
 
   def create
-    Event.create(event_parameter)
+    @event = Event.new(event_params)
+    @event.color = params[:event][:color]
+
+    if @event.save
     redirect_to events_path
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -40,7 +46,7 @@ class EventsController < ApplicationController
 
   private
 
-  def event_parameter
+  def event_params
     params.require(:event).permit(:title, :content, :start_time, :color, :image)
   end
 

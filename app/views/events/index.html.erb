@@ -42,14 +42,14 @@
 
 
   <div>
-  <select id="color-selector">
-  <option value="red" class="red-bg">赤</option>
-  <option value="blue" class="blue-bg">青</option>
-  <option value="green" class="green-bg">緑</option>
-  <option value="yellow" class="yellow-bg">黄</option>
-</select>
+  <select id="color-selector" name="event[color]">
+    <option value="red" class="red-bg">赤</option>
+    <option value="blue" class="blue-bg">青</option>
+    <option value="green" class="green-bg">緑</option>
+    <option value="yellow" class="yellow-bg">黄</option>
+  </select>
+</div>
 
- </div>
 
  <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -73,12 +73,30 @@ document.addEventListener('DOMContentLoaded', function() {
   options.forEach(function(option) {
     const optionColor = option.value;
     option.style.backgroundColor = optionColor;
+
+
   });
 });
 
-
  </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const colorSelector = document.getElementById('color-selector');
+      const eventTitle = document.querySelector('.event-title');
+
+      colorSelector.addEventListener('change', function() {
+        const selectedOption = colorSelector.options[colorSelector.selectedIndex];
+        const selectedColorClass = selectedOption.className;
+
+        // イベント名の横にバッジを表示
+        eventTitle.innerHTML = `
+          <span class="event-badge ${selectedColorClass}">バッジ</span>
+          ${eventTitle.innerHTML}
+        `;
+      });
+    });
+  </script>
 
 
   <div class="time">
@@ -115,8 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <%= date.day %>
 
     <% events.each do |event| %>
-    <div>
-<span class="event-title" style="color: <%= event.color %>;"><%= link_to event.title, event %></span>
+   <div>
+  <span class="event-title" style="color: <%= event.color %>;">
+      <span class="event-badge <%= event.color %>">●</span>
+      <%= link_to event.title, event %>
+    </span>
     </div>
     <% end %>
   <% end %>
