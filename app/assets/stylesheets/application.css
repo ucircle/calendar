@@ -45,3 +45,53 @@
   font-size: 12px;
 }
 
+
+.toppage h1 {
+  font-family: courier;
+  color: #0099ff;
+  font-weight: bold;
+}
+
+.schedule {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.table {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.submit {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.submit input[type="submit"] {
+  width: 150px; /* 幅を指定 */
+  height: 50px; /* 高さを指定 */
+  background-color: #0066ff; /* 背景色を指定 */
+  color: #FFFFFF; /* テキストの色を指定 */
+}
+
+.show p {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+
+.show p:last-child {
+  border-bottom: none;
+}
+
+.event-divider {
+  border-top: 1px solid #000;
+}
+
+.row {
+    font-family: Yu Mincho;
+}
+
+.show {
+    font-family: Yu Mincho;
+}

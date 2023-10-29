@@ -6,21 +6,18 @@
 </p>
 
 <p>
-  <strong>内容</strong>
+  <strong>詳細</strong>
   <%= @event.content %>
 </p>
 
 <p>
-<strong>色</strong>
-<%= @event.color %>
-</p>
-
-<p>
   <strong>日時</strong>
-  <%= @event.start_time.strftime("%m-%d") %>
+  <%= @event.start_time.strftime("%m-%d %H:%M") %>
 </p>
+<% if @event.image.attached? %>
+  <%= image_tag @event.image,size: "300x300" %>
+<% end %>
 
-<%= link_to '編集', edit_event_path(@event) %>
 <%= link_to '消去',event_path(@event.id), method: :delete, data: { confirm: '本当に?' } %>
 <%= link_to '戻る', events_path %>
 </div>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="toppage">
-<h1 class="top">カレンダー</h1>
+<h1 class="top">Calendar</h1>
 <br>
 
 <div class="row">
@@ -31,7 +31,7 @@
 
 <%= form_with(model: @event, local: true) do |form| %>
   <div class="title">
-    <div class="form-tag">タイトル</div>
+    <div class="form-tag">イベント名</div>
     <%= form.text_field :title, id: 'event-title' %>
   </div>
 
@@ -42,6 +42,7 @@
 
 
   <div>
+    <div class="form-tag">カラー</div>
   <select id="color-selector" name="event[color]">
     <option value="red" class="red-bg">赤</option>
     <option value="blue" class="blue-bg">青</option>
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectedOption = colorSelector.options[colorSelector.selectedIndex];
     const selectedColor = selectedOption.value;
 
-    // 選択された項目の背景色を設定
+  // 項目の背景色を設定
     colorSelector.style.backgroundColor = selectedColor;
   });
 
@@ -73,60 +74,25 @@ document.addEventListener('DOMContentLoaded', function() {
   options.forEach(function(option) {
     const optionColor = option.value;
     option.style.backgroundColor = optionColor;
-
-
   });
 });
 
  </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const colorSelector = document.getElementById('color-selector');
-      const eventTitle = document.querySelector('.event-title');
-
-      colorSelector.addEventListener('change', function() {
-        const selectedOption = colorSelector.options[colorSelector.selectedIndex];
-        const selectedColorClass = selectedOption.className;
-
-        // イベント名の横にバッジを表示
-        eventTitle.innerHTML = `
-          <span class="event-badge ${selectedColorClass}">バッジ</span>
-          ${eventTitle.innerHTML}
-        `;
-      });
-    });
-  </script>
-
 
   <div class="time">
     <div class="form-tag">時間</div>
     <%= form.datetime_select :start_time %>
   </div>
 
-  <div><%= form.file_field :image %></div>
+  <div class="image">
+    <div>image</div>
+    <%= form.file_field :image %>
+  </div>
 
   <div class="submit">
-    <%= form.submit %>
+    <%= form.submit 'イベントを作成' %>
   </div>
 <% end %>
-
-<%#<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const colorPicker = document.getElementById('color-picker');
-    const eventTitles = document.querySelectorAll('.event-title');
-
-    colorPicker.addEventListener('input', function() {
-      const selectedColor = colorPicker.value;
-
-      // イベント名の文字色を変更
-      eventTitles.forEach(function(eventTitle) {
-        eventTitle.style.color = selectedColor;
-      });
-    });
-  });
-</script>
-%>
 
 <div class="col-md-8">
   <%= month_calendar events: @events do |date, events| %>

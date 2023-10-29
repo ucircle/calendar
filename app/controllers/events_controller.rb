@@ -13,13 +13,14 @@ class EventsController < ApplicationController
   end
 
   def create
+    @events = Event.all
     @event = Event.new(event_params)
     @event.color = params[:event][:color]
 
     if @event.save
     redirect_to events_path
     else
-      render 'new'
+      render 'events/index', notice:"イベント名を入力してください"
     end
   end
 
@@ -32,16 +33,6 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
   end
-
-  def update
-    @event = Event.find(params[:id])
-    if @event.update(event_parameter)
-      redirect_to events_path, notice: "編集しました"
-    else
-      render 'edit'
-    end
-  end
-
 
 
   private
