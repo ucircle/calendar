@@ -52,6 +52,10 @@
   font-weight: bold;
 }
 
+.row {
+    font-family: Yu Mincho;
+}
+
 .schedule {
   border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
@@ -64,13 +68,18 @@
 .submit {
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .submit input[type="submit"] {
-  width: 150px; /* 幅を指定 */
-  height: 50px; /* 高さを指定 */
-  background-color: #0066ff; /* 背景色を指定 */
-  color: #FFFFFF; /* テキストの色を指定 */
+  width: 150px;
+  height: 50px;
+  background-color: #0066ff;
+  color: #FFFFFF;
+}
+
+.show {
+    font-family: Yu Mincho;
 }
 
 .show p {
@@ -79,19 +88,8 @@
   padding-bottom: 10px;
 }
 
-
 .show p:last-child {
   border-bottom: none;
 }
 
-.event-divider {
-  border-top: 1px solid #000;
-}
 
-.row {
-    font-family: Yu Mincho;
-}
-
-.show {
-    font-family: Yu Mincho;
-}

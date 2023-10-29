@@ -4,11 +4,15 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def new
     @event = Event.new
   end
 
-  def show
+  def edit
     @event = Event.find(params[:id])
   end
 
@@ -18,11 +22,13 @@ class EventsController < ApplicationController
     @event.color = params[:event][:color]
 
     if @event.save
-    redirect_to events_path
+      redirect_to events_path, notice: "イベントを作成しました"
     else
-      render 'events/index', notice:"イベント名を入力してください"
+      flash.now[:alert] = "イベント名を入力してください"
+      render 'events/index'
     end
   end
+
 
   def destroy
    @event = Event.find(params[:id])
@@ -30,9 +36,6 @@ class EventsController < ApplicationController
    redirect_to events_path, notice:"削除しました"
   end
 
-  def edit
-    @event = Event.find(params[:id])
-  end
 
 
   private
